@@ -10,3 +10,24 @@
     content: ' '; 
   }
 }
+@mixin backImg($url){
+  display: inline-block;
+  vertical-align: middle;
+  margin-top: -2px;
+  background: url('#{$url}@2x.png') no-repeat;
+  background-size: 100% 100%;
+  @media (-webkit-min-device-pixel-ratio:3), (min-device-pixel-ratio:3){
+    background: url('#{$url}@3x.png') no-repeat;
+  }
+}
+@mixin oneLine(){
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+@mixin moreThanOneLine($line:2){
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: #{$line};
+  -webkit-box-orient: vertical;
+}

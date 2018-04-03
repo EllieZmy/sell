@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <v-header></v-header>
+    <v-header :seller = seller></v-header>
     <nav class = 'nav border-1px'>
       <div class = 'nav-item'>
         <!-- <transition :name = 'slide-left'> -->
@@ -20,8 +20,23 @@
 
 <script>
 import Header from '@/components/header/header'
+const ERRNO = 0
 export default {
   name: 'App',
+  data () {
+    return {
+      seller: {}
+    }
+  },
+  created () {
+    this.$http.get('/api/seller').then((response) => {
+      response = response.body
+      if (response.errno === ERRNO) {
+        this.seller = response.data
+        console.log(this.seller)
+      }
+    })
+  },
   components: {
     'v-header': Header
   }
