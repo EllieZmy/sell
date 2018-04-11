@@ -28,7 +28,9 @@
       <div class = 'supports-wrapper clearfix'>
         <div class = 'content'>
           <div class = 'tt'>{{seller.name}}</div>
-          <div class = 'star'></div>
+          <div class = 'star-wrapper'>
+            <v-star :score = 'seller.score' :size = '48'></v-star>
+          </div>
           <div class = 'favour'>
             <div class = 'favour-tt line-tt'>
               <span>优惠信息</span>
@@ -56,10 +58,14 @@
 </template>
 
 <script>
+import Star from '@/components/star/star'
 export default {
   name: 'Header',
   props: {
     seller: Object
+  },
+  components: {
+    'v-star': Star
   },
   data () {
     return {
@@ -221,8 +227,9 @@ export default {
         margin-bottom: 16px;
         margin-bottom: 16px;
       }
-      .star{
+      .star-wrapper{
         margin-bottom: 28px;
+        text-align: center;
       }
       .supports-list{
         margin-bottom: 28px;
