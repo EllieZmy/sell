@@ -23,15 +23,19 @@
 }
 // 带有线条的标题
 .line-tt{
-  border-top: 1px solid rgba(255,255,255,.2);
+  display: flex;
   text-align: center;
   font-size: 14px;
   margin-bottom: 18px;
-  > span{
+  .line{
+    flex: 1 1 auto;
+    align-self: center;
+    display: block;
+    border-bottom:1px solid rgba(255, 255, 255, .2);
+  }
+  .tt-content{
     display: inline-block;
     vertical-align: middle;
-    background-color: rgba(7,17,27,.8);
     padding: 0 12px;
-    margin-top: -18px;
   }
 }

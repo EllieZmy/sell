@@ -24,36 +24,42 @@
       <i class = 'icon-keyboard_arrow_right'></i>
     </div>
     <!-- supports detail popup -->
-    <div class = 'supports-detail' v-show='showSupportsDetail'>
-      <div class = 'supports-wrapper clearfix'>
-        <div class = 'content'>
-          <div class = 'tt'>{{seller.name}}</div>
-          <div class = 'star-wrapper'>
-            <v-star :score = 'seller.score' :size = '48'></v-star>
-          </div>
-          <div class = 'favour'>
-            <div class = 'favour-tt line-tt'>
-              <span>优惠信息</span>
+    <transition name = 'fade'>
+      <div class = 'supports-detail' v-show='showSupportsDetail'>
+        <div class = 'supports-wrapper clearfix'>
+          <div class = 'content'>
+            <div class = 'tt'>{{seller.name}}</div>
+            <div class = 'star-wrapper'>
+              <v-star :score = 'seller.score' :size = '48'></v-star>
             </div>
-            <ul class = 'supports-list'>
-              <li v-for = 'item in seller.supports' :key = 'item' >
-                <span class = 'activity' :class = '"activity-" + item.type + "-icon"'></span>
-                {{item.description}}
-              </li>
-            </ul>
-          </div>
-          <div class = 'd-notice'>
-            <div class = 'd-notice-tt line-tt'>
-              <span>商家公告</span>
+            <div class = 'favour'>
+              <div class = 'favour-tt line-tt'>
+                <span class = 'line'></span>
+                <span class = 'tt-content'>优惠信息</span>
+                <span class = 'line'></span>
+              </div>
+              <ul class = 'supports-list'>
+                <li v-for = 'item in seller.supports' :key = 'item' >
+                  <span class = 'activity' :class = '"activity-" + item.type + "-icon"'></span>
+                  {{item.description}}
+                </li>
+              </ul>
             </div>
-            <div class = 'notice-content'>{{seller.bulletin}}</div>
+            <div class = 'd-notice'>
+              <div class = 'd-notice-tt line-tt'>
+                <span class = 'line'></span>
+                <span class = 'tt-content'>商家公告</span>
+                <span class = 'line'></span>
+              </div>
+              <div class = 'notice-content'>{{seller.bulletin}}</div>
+            </div>
           </div>
         </div>
+        <div class = 'footer'>
+          <i class = 'icon-close' @click = 'supportsHide()'></i>
+        </div>
       </div>
-      <div class = 'footer'>
-        <i class = 'icon-close' @click = 'supportsHide()'></i>
-      </div>
-    </div>
+    </transition>
   </div>
 </template>
 
@@ -204,8 +210,14 @@ export default {
     right: 12px;
   }
 }
+.fade-enter-active, .fade-leave-active{
+  transition: all 0.5s
+}
+.fade-enter, .fade-leave-active{
+  opacity: 0;
+}
 .supports-detail{
-  background-color: rgba(7,17,27,0.8);
+  background-color: rgba(7, 17, 27, .8);
   position: fixed;
   z-index: 100;
   top:0;
@@ -214,6 +226,7 @@ export default {
   bottom: 0;
   overflow: auto;
   color: rgb(255,255,255);
+  backdrop-filter: blur(10px);
   .supports-wrapper{
     width: 100%;
     min-height: 100%;

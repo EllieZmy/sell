@@ -4,10 +4,10 @@
   </div>
 </template>
 <script>
-let COUNT = 5
-let STAR_ON = 'on'
-let STAR_HALF = 'half'
-let STAR_OFF = 'off'
+const COUNT = 5
+const STAR_ON = 'on'
+const STAR_HALF = 'half'
+const STAR_OFF = 'off'
 export default {
   props: {
     score: {
@@ -30,7 +30,7 @@ export default {
       let starType = parseInt(this.score * 2) / 2
       let hasDecimal = starType % 1 !== 0
       let starArr = []
-      for (var i = 0; i < starType; i++) {
+      for (let i = 0; i < starType; i++) {
         starArr.push(STAR_ON)
       }
       if (hasDecimal) {
