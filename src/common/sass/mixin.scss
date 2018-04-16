@@ -10,6 +10,11 @@
     content: ' '; 
   }
 }
+@mixin border-none(){
+  &:after{
+    display: none;
+  }
+}
 @mixin backImg($url){
   display: inline-block;
   vertical-align: middle;
